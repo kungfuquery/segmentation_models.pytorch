@@ -1,6 +1,7 @@
 # fmt: off
 from .functional import (
     get_stats,
+    dice_score,
     f1_score,
     iou_score,
     accuracy,

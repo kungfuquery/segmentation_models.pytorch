@@ -35,7 +35,6 @@ from typing import Optional, List, Tuple, Union
 __all__ = [
     "get_stats",
     "dice_score",
-    "fbeta_score",
     "f1_score",
     "iou_score",
     "accuracy",
@@ -785,7 +784,7 @@ _doc = """
         https://en.wikipedia.org/wiki/Confusion_matrix
 """
 dice_score.__doc__ += _doc
-fbeta_score.__doc__ += _doc
+# fbeta_score.__doc__ += _doc
 f1_score.__doc__ += _doc
 iou_score.__doc__ += _doc
 accuracy.__doc__ += _doc

@@ -22,7 +22,7 @@ from .functional import (
 
 __all__ = [
     "get_stats",
-    "fbeta_score",
+    "dice_score",
     "f1_score",
     "iou_score",
     "accuracy",

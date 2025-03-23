@@ -1,7 +1,6 @@
 # fmt: off
 from .functional import (
     get_stats,
-    fbeta_score,
     f1_score,
     iou_score,
     accuracy,

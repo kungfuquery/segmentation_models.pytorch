@@ -34,6 +34,7 @@ from typing import Optional, List, Tuple, Union
 
 __all__ = [
     "get_stats",
+    "dice_score",
     "fbeta_score",
     "f1_score",
     "iou_score",
@@ -326,8 +327,13 @@ def _compute_metric(
 
 # Logic for metric computation, all metrics are with the same interface
 
-
 def _fbeta_score(tp, fp, fn, tn, beta=1):
+    beta_tp = (1 + beta**2) * tp
+    beta_fn = (beta**2) * fn
+    score = beta_tp / (beta_tp + beta_fn + fp)
+    return score
+    
+def _dice_score(tp, fp, fn, tn, beta=1):
     print('======= DICE COEF ========')
     return (2 * tp) / (2 * tp + fp + fn)
     
@@ -385,7 +391,8 @@ def _negative_likelihood_ratio(tp, fp, fn, tn):
     return _false_negative_rate(tp, fp, fn, tn) / _specificity(tp, fp, fn, tn)
 
 
-def fbeta_score(
+
+def dice_score(
     tp: torch.LongTensor,
     fp: torch.LongTensor,
     fn: torch.LongTensor,
@@ -397,7 +404,7 @@ def fbeta_score(
 ) -> torch.Tensor:
     """F beta score"""
     return _compute_metric(
-        _fbeta_score,
+        _dice_score,
         tp,
         fp,
         fn,
@@ -777,7 +784,7 @@ _doc = """
     References:
         https://en.wikipedia.org/wiki/Confusion_matrix
 """
-
+dice_score.__doc__ += _doc
 fbeta_score.__doc__ += _doc
 f1_score.__doc__ += _doc
 iou_score.__doc__ += _doc

@@ -327,14 +327,12 @@ def _compute_metric(
 # Logic for metric computation, all metrics are with the same interface
 
 def _fbeta_score(tp, fp, fn, tn, beta=1):
-    print('======= F_Beta ========')
     beta_tp = (1 + beta**2) * tp
     beta_fn = (beta**2) * fn
     score = beta_tp / (beta_tp + beta_fn + fp)
     return score
     
 def _dice_score(tp, fp, fn, tn, beta=1):
-    print('======= DICE COEF ========')
     return (2 * tp) / (2 * tp + fp + fn)
     
 
